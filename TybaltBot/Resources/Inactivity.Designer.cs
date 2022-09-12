@@ -70,6 +70,15 @@ namespace TybaltBot.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} ist nicht mehr inaktiv!.
+        /// </summary>
+        internal static string Active_Inform {
+            get {
+                return ResourceManager.GetString("Active_Inform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Du bist nicht mehr Inaktiv!.
         /// </summary>
         internal static string Active_Success {

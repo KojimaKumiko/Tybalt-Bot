@@ -120,6 +120,9 @@
   <data name="AccountName" xml:space="preserve">
     <value>Account Name</value>
   </data>
+  <data name="Active_Inform" xml:space="preserve">
+    <value>{0} ist nicht mehr inaktiv!</value>
+  </data>
   <data name="Active_Success" xml:space="preserve">
     <value>Du bist nicht mehr Inaktiv!</value>
   </data>

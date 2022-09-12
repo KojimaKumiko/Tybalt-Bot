@@ -18,7 +18,7 @@ namespace TybaltBot.Services
     {
         private readonly InteractionService interactionService;
         private readonly DiscordSocketClient client;
-        private readonly ConfigService configService;
+        private readonly ConfigService config;
         private readonly ILogger logger;
         private readonly IServiceProvider services;
 
@@ -26,11 +26,11 @@ namespace TybaltBot.Services
         {
             interactionService = services.GetRequiredService<InteractionService>();
             client = services.GetRequiredService<DiscordSocketClient>();
-            configService = services.GetRequiredService<ConfigService>();
+            config = services.GetRequiredService<ConfigService>();
             logger = services.GetRequiredService<LoggingService>().Logger;
             this.services = services;
 
-            var config = configService.LoadJsonAsync(ConfigService.configFileName).GetAwaiter().GetResult();
+            config = config.LoadJsonAsync(ConfigService.configFileName).GetAwaiter().GetResult()!;
 
             client.Ready += async () =>
             {
@@ -48,55 +48,25 @@ namespace TybaltBot.Services
 
             client.ButtonExecuted += async (button) =>
             {
-                logger.Debug("Button executed");
+                logger.Debug($"Button executed: {button.Data.CustomId}");
 
-                ModalBuilder mb;
                 switch (button.Data.CustomId)
                 {
                     case "application-button":
-                        mb = new ModalBuilder()
-                            .WithTitle(Application.Title)
-                            .WithCustomId("application-modal")
-                            .AddTextInput(Application.ModalAcountName, "account_name", TextInputStyle.Short, "name.1234")
-                            .AddTextInput(Application.Reason, "reason", TextInputStyle.Paragraph)
-                            .AddTextInput(Application.Found, "found", TextInputStyle.Paragraph)
-                            .AddTextInput(Application.Skill, "skill", TextInputStyle.Short);
-
-                        await button.RespondWithModalAsync(mb.Build());
+                        await HandleApplicationButton(button);
                         break;
                     case "inactive-button":
-                        mb = new ModalBuilder()
-                            .WithTitle(Inactivity.Title)
-                            .WithCustomId("inactivity-modal")
-                            .AddTextInput(Inactivity.Modal_AccountName, "account_name", TextInputStyle.Short, "name.1234")
-                            .AddTextInput(Inactivity.Modal_Duration, "duration", TextInputStyle.Short)
-                            .AddTextInput(Inactivity.Modal_Reason, "reason", TextInputStyle.Paragraph);
-
-                        await button.RespondWithModalAsync(mb.Build());
+                        await HandleInactiveButton(button);
                         break;
                     case "active-button":
-                        await button.RespondAsync(Inactivity.Active_Success, ephemeral: true);
-
-                        ulong roleId = config!.Roles["inactivity"];
-
-                        var guild = client.Guilds.First(g => g.Id == button.GuildId);
-                        var guildUser = guild.Users.First(u => u.Id == button.User.Id);
-                        var channel = guild.Channels.First(c => c.Id == config!.Channels["inactivity"]);
-
-                        await guildUser.RemoveRoleAsync(roleId);
-
-                        if (channel.GetChannelType() == ChannelType.Text)
-                        {
-                            string message = button.User.Mention + " ist nicht mehr inaktiv!";
-                            await ((SocketTextChannel)channel).SendMessageAsync(message);
-                        }
+                        await HandleActiveButton(button);
                         break;
                 }
             };
 
             client.ModalSubmitted += async (modal) =>
             {
-                logger.Debug("Modal submitted");
+                logger.Debug($"Modal submitted: {modal.Data.CustomId}");
 
                 switch (modal.Data.CustomId)
                 {
@@ -113,6 +83,50 @@ namespace TybaltBot.Services
         public async Task InitializeAsync()
         {
             await interactionService.AddModulesAsync(Assembly.GetEntryAssembly(), services);
+        }
+
+        private async Task HandleApplicationButton(SocketMessageComponent button)
+        {
+            var mb = new ModalBuilder()
+                .WithTitle(Application.Title)
+                .WithCustomId("application-modal")
+                .AddTextInput(Application.ModalAcountName, "account_name", TextInputStyle.Short, "name.1234")
+                .AddTextInput(Application.Reason, "reason", TextInputStyle.Paragraph)
+                .AddTextInput(Application.Found, "found", TextInputStyle.Paragraph)
+                .AddTextInput(Application.Skill, "skill", TextInputStyle.Short);
+
+            await button.RespondWithModalAsync(mb.Build());
+        }
+
+        private async Task HandleInactiveButton(SocketMessageComponent button)
+        {
+            var mb = new ModalBuilder()
+                .WithTitle(Inactivity.Title)
+                .WithCustomId("inactivity-modal")
+                .AddTextInput(Inactivity.Modal_AccountName, "account_name", TextInputStyle.Short, "name.1234")
+                .AddTextInput(Inactivity.Modal_Duration, "duration", TextInputStyle.Short)
+                .AddTextInput(Inactivity.Modal_Reason, "reason", TextInputStyle.Paragraph);
+
+            await button.RespondWithModalAsync(mb.Build());
+        }
+
+        private async Task HandleActiveButton(SocketMessageComponent button)
+        {
+            await button.RespondAsync(Inactivity.Active_Success, ephemeral: true);
+
+            ulong roleId = config!.Roles["inactivity"];
+
+            var guild = client.Guilds.First(g => g.Id == button.GuildId);
+            var guildUser = guild.Users.First(u => u.Id == button.User.Id);
+            var channel = guild.Channels.First(c => c.Id == config!.Channels["inactivity"]);
+
+            await guildUser.RemoveRoleAsync(roleId);
+
+            if (channel.GetChannelType() == ChannelType.Text)
+            {
+                string message = string.Format(Inactivity.Active_Inform, button.User.Mention);
+                await ((SocketTextChannel)channel).SendMessageAsync(message);
+            }
         }
 
         private async Task HandleApplicationModal(SocketModal modal)
@@ -135,6 +149,11 @@ namespace TybaltBot.Services
                 return;
             }
 
+            logger.Information($"AccountName: {accountName}");
+            logger.Information($"Reason: {reason}");
+            logger.Information($"Found: {found}");
+            logger.Information($"Skill: {skill}");
+
             var embedBuilder = new EmbedBuilder()
                 .WithAuthor(modal.User)
                 .WithTitle(Application.Title)
@@ -145,7 +164,6 @@ namespace TybaltBot.Services
                 .AddField(Application.Found, found)
                 .AddField(Application.Skill, skill);
 
-            var config = await configService.LoadJsonAsync(ConfigService.configFileName);
             var channel = client.Guilds.First(g => g.Id == config!.GuildId).Channels.First(c => c.Id == config!.Channels["bewerbung"]);
             if (channel.GetChannelType() == ChannelType.Text)
             {
@@ -155,7 +173,6 @@ namespace TybaltBot.Services
 
                 var emoteTrue = client.Guilds.SelectMany(g => g.Emotes).FirstOrDefault(e => e.Name.IndexOf("raid_true") != -1);
                 var emoteFalse = client.Guilds.SelectMany(g => g.Emotes).FirstOrDefault(e => e.Name.IndexOf("raid_false") != -1);
-                //await message.AddReactionsAsync(new[] { emoteTrue, emoteFalse });
 
                 if (emoteTrue != null)
                 {
@@ -207,6 +224,10 @@ namespace TybaltBot.Services
                 return;
             }
 
+            logger.Information($"AccountName: {accountName}");
+            logger.Information($"Duration: {duration}");
+            logger.Information($"Reason: {reason}");
+
             var embedBuilder = new EmbedBuilder()
                 .WithAuthor(modal.User)
                 .WithTitle(Inactivity.Title)
@@ -217,7 +238,6 @@ namespace TybaltBot.Services
                 .AddField(Inactivity.Reason, reason)
                 .WithFooter(Inactivity.Embed_Footer);
 
-            var config = await configService.LoadJsonAsync(ConfigService.configFileName);
             ulong roleId = config!.Roles["inactivity"];
 
             var guild = client.Guilds.First(g => g.Id == modal.GuildId);
