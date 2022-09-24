@@ -149,6 +149,7 @@ namespace TybaltBot.Services
 
         private async Task HandleApplicationModal(SocketModal modal)
         {
+            await modal.DeferAsync(ephemeral: true);
             var components = modal.Data.Components.ToList();
 
             string accountName = components.First(x => x.CustomId == "account_name").Value;
@@ -224,7 +225,7 @@ namespace TybaltBot.Services
                 await appInfo.Owner.SendMessageAsync($"Exception: {ex}\nException Message: {ex.Message}");
             }
 
-            await modal.RespondAsync(Application.ModalSuccess, ephemeral: true);
+            await modal.FollowupAsync(Application.ModalSuccess, ephemeral: true);
         }
 
         private async Task HandleInactivityModal(SocketModal modal)

@@ -52,7 +52,8 @@ namespace TybaltBot
                 LogLevel = LogSeverity.Debug,
                 MessageCacheSize = 50,
                 AlwaysDownloadUsers = true,
-                DefaultRetryMode = RetryMode.AlwaysRetry
+                DefaultRetryMode = RetryMode.AlwaysRetry,
+                UseInteractionSnowflakeDate = false,
             };
 
             var client = new DiscordSocketClient(config);
