@@ -132,12 +132,12 @@
   <data name="EmbedDescription" xml:space="preserve">
     <value>Der Sinn und Zweck des Bots ist einfach: Er soll es euch ermöglichen euch als Inaktiv zu melden, wenn ihr für längere Zeit (4 oder mehr Wochen) nicht an der Community teilhaben könnt oder wollt.
 
-Wenn ihr euch Inaktiv melden möchtet, fragt der Bot euren Gw2 Account Namen ab, den Zeitraum (bitte gebt hier wirklich einen realistischen Zeitraum an, und kein "bis irgendwann") und den Grund warum ihr euch Inaktiv meldet (längerer Urlaub, Auslandssemester, Bachelorarbeit, PC kaputt o.ä.).
+Wenn ihr euch Inaktiv melden möchtet, fragt der Bot euren GW2-Accountnamen ab, den Zeitraum (bitte gebt hier wirklich einen realistischen Zeitraum an, und kein "bis irgendwann") und den Grund warum ihr euch Inaktiv meldet (längerer Urlaub, Auslandssemester, Bachelorarbeit, PC kaputt o.ä.).
 Anschließend wird die Raidleitung darüber benachrichtigt.
 
 Mit der Inaktivität geht auch einher, dass ihr den Zugriff auf {0} verliert.
 
-Wenn ihr euch dann wieder Aktiv meldet, wird die Rolle automatisch vom Bot entfernt. Ebenso erhaltet ihr eine kurze Benachrichtigung darüber das es geklappt hat und die Raidleitung eine Benachrichtigung darüber, dass ihr wieder Aktiv seid.
+Wenn ihr euch dann wieder Aktiv meldet, wird die Rolle automatisch vom Bot entfernt. Ebenso erhaltet ihr eine kurze Benachrichtigung darüber, dass es geklappt hat und die Raidleitung eine Benachrichtigung darüber, dass ihr wieder Aktiv seid.
 
 Um den Bot zu nutzen müsst ihr ganz einfach hier auf die Knöpfe unter der Nachricht des Bots klicken.
 Bei Fragen oder Problemen mit dem Bot wendet euch bitte an {1}</value>
@@ -149,7 +149,7 @@ Bei Fragen oder Problemen mit dem Bot wendet euch bitte an {1}</value>
     <value>Vielen Dank für das Beantworten der Fragen. Dir wurde nun automatisch die Inaktivitäts-Rolle hinzugefügt und die Raidleitung wurde darüber Informiert.</value>
   </data>
   <data name="Modal_AccountName" xml:space="preserve">
-    <value>Dein GW2 Account Name</value>
+    <value>Dein GW2-Accountname</value>
   </data>
   <data name="Modal_Duration" xml:space="preserve">
     <value>Wie lange möchtest du pausieren?</value>

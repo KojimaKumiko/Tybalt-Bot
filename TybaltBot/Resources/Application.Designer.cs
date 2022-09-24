@@ -80,7 +80,7 @@ namespace TybaltBot.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Willkommen Fremder!
-        ///Wir freuen uns, dass du den Weg auf unseren Server gefunden hast. Alle Infos zu unserer Raid-Community findest du hier im Discord oder auf unserer Website Rising Light.
+        ///Wir freuen uns, dass du den Weg auf unseren Server gefunden hast. Alle Infos zu unserer Raid-Community findest du hier im Discord oder auf unserer Website [Rising Light](https://rising-light.de/).
         ///
         ///Wenn du Mitglied werden möchtest, bewirb dich einfach indem du auf den Bewerben-Knopf unter dieser Nachricht klickst.
         ///Es öffnet sich dann ein Pop-Up Fenster, welches ausgefüllt werden muss..
@@ -88,6 +88,17 @@ namespace TybaltBot.Resources {
         internal static string EmbedDescription {
             get {
                 return ResourceManager.GetString("EmbedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vielen Dank für deine Bewerbung! Wir werden sie innerhalb der nächsten Tage bearbeiten und dir Rechte geben.
+        ///
+        ///In der Zwischenzeit kannst du dir schon einmal deinen Account bei [RaidOrga+](https://orga.rising-light.de/#/) anlegen. Bitte achte auch hier darauf, deinen Accountnamen richtig anzugeben..
+        /// </summary>
+        internal static string EmbedSuccess {
+            get {
+                return ResourceManager.GetString("EmbedSuccess", resourceCulture);
             }
         }
         
@@ -101,7 +112,7 @@ namespace TybaltBot.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dein GW2 Account Name.
+        ///   Looks up a localized string similar to Dein GW2-Accountname.
         /// </summary>
         internal static string ModalAcountName {
             get {

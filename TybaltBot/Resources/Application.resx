@@ -125,16 +125,21 @@
   </data>
   <data name="EmbedDescription" xml:space="preserve">
     <value>Willkommen Fremder!
-Wir freuen uns, dass du den Weg auf unseren Server gefunden hast. Alle Infos zu unserer Raid-Community findest du hier im Discord oder auf unserer Website Rising Light.
+Wir freuen uns, dass du den Weg auf unseren Server gefunden hast. Alle Infos zu unserer Raid-Community findest du hier im Discord oder auf unserer Website [Rising Light](https://rising-light.de/).
 
 Wenn du Mitglied werden möchtest, bewirb dich einfach indem du auf den Bewerben-Knopf unter dieser Nachricht klickst.
 Es öffnet sich dann ein Pop-Up Fenster, welches ausgefüllt werden muss.</value>
+  </data>
+  <data name="EmbedSuccess" xml:space="preserve">
+    <value>Vielen Dank für deine Bewerbung! Wir werden sie innerhalb der nächsten Tage bearbeiten und dir Rechte geben.
+
+In der Zwischenzeit kannst du dir schon einmal deinen Account bei [RaidOrga+](https://orga.rising-light.de/#/) anlegen. Bitte achte auch hier darauf, deinen Accountnamen richtig anzugeben.</value>
   </data>
   <data name="Found" xml:space="preserve">
     <value>Wie bist du auf Rising Light gestoßen?</value>
   </data>
   <data name="ModalAcountName" xml:space="preserve">
-    <value>Dein GW2 Account Name</value>
+    <value>Dein GW2-Accountname</value>
   </data>
   <data name="ModalSuccess" xml:space="preserve">
     <value>Die Bewerbung wurde erfolgreich verschickt!</value>

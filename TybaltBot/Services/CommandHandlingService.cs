@@ -50,17 +50,26 @@ namespace TybaltBot.Services
             {
                 logger.Debug($"Button executed: {button.Data.CustomId}");
 
-                switch (button.Data.CustomId)
+                try
                 {
-                    case "application-button":
-                        await HandleApplicationButton(button);
-                        break;
-                    case "inactive-button":
-                        await HandleInactiveButton(button);
-                        break;
-                    case "active-button":
-                        await HandleActiveButton(button);
-                        break;
+                    switch (button.Data.CustomId)
+                    {
+                        case "application-button":
+                            await HandleApplicationButton(button);
+                            break;
+                        case "inactive-button":
+                            await HandleInactiveButton(button);
+                            break;
+                        case "active-button":
+                            await HandleActiveButton(button);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex.ToString());
+                    var appInfo = await client.GetApplicationInfoAsync();
+                    await appInfo.Owner.SendMessageAsync($"Exception: {ex}\nException Message: {ex.Message}");
                 }
             };
 
@@ -68,14 +77,23 @@ namespace TybaltBot.Services
             {
                 logger.Debug($"Modal submitted: {modal.Data.CustomId}");
 
-                switch (modal.Data.CustomId)
+                try
                 {
-                    case "application-modal":
-                        await HandleApplicationModal(modal);
-                        break;
-                    case "inactivity-modal":
-                        await HandleInactivityModal(modal);
-                        break;
+                    switch (modal.Data.CustomId)
+                    {
+                        case "application-modal":
+                            await HandleApplicationModal(modal);
+                            break;
+                        case "inactivity-modal":
+                            await HandleInactivityModal(modal);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Fatal(ex.ToString());
+                    var appInfo = await client.GetApplicationInfoAsync();
+                    await appInfo.Owner.SendMessageAsync($"Exception: {ex}\nException Message: {ex.Message}");
                 }
             };
         }
@@ -195,11 +213,15 @@ namespace TybaltBot.Services
 
             try
             {
-                await modal.User.SendMessageAsync(embed: embedBuilder.Build());
+                var successEmbed = new EmbedBuilder().WithDescription(Application.EmbedSuccess);
+                var embeds = new Embed[] { successEmbed.Build(), embedBuilder.Build() };
+                await modal.User.SendMessageAsync(embeds: embeds);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
+                var appInfo = await client.GetApplicationInfoAsync();
+                await appInfo.Owner.SendMessageAsync($"Exception: {ex}\nException Message: {ex.Message}");
             }
 
             await modal.RespondAsync(Application.ModalSuccess, ephemeral: true);

@@ -108,8 +108,8 @@ namespace TybaltBot.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Der Sinn und Zweck des Bots ist einfach: Er soll es euch ermöglichen euch als Inaktiv zu melden, wenn ihr für längere Zeit (4 oder mehr Wochen) nicht an der Community teilhaben könnt oder wollt.
         ///
-        ///Wenn ihr euch Inaktiv melden möchtet, fragt der Bot euren Gw2 Account Namen ab, den Zeitraum (bitte gebt hier wirklich einen realistischen Zeitraum an, und kein &quot;bis irgendwann&quot;) und den Grund warum ihr euch Inaktiv meldet (längerer Urlaub, Auslandssemester, Bachelorarbeit, PC kaputt o.ä.).
-        ///Anschließend wird die [rest of string was truncated]&quot;;.
+        ///Wenn ihr euch Inaktiv melden möchtet, fragt der Bot euren GW2-Accountnamen ab, den Zeitraum (bitte gebt hier wirklich einen realistischen Zeitraum an, und kein &quot;bis irgendwann&quot;) und den Grund warum ihr euch Inaktiv meldet (längerer Urlaub, Auslandssemester, Bachelorarbeit, PC kaputt o.ä.).
+        ///Anschließend wird die  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string EmbedDescription {
             get {
@@ -127,7 +127,7 @@ namespace TybaltBot.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dein GW2 Account Name.
+        ///   Looks up a localized string similar to Dein GW2-Accountname.
         /// </summary>
         internal static string Modal_AccountName {
             get {
