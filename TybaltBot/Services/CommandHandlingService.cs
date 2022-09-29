@@ -214,6 +214,20 @@ namespace TybaltBot.Services
 
             try
             {
+                ulong roleId = config!.Roles["application"];
+                var guild = client.Guilds.First(g => g.Id == modal.GuildId);
+                var guildUser = guild.Users.First(u => u.Id == modal.User.Id);
+                await guildUser.AddRoleAsync(roleId);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                var appInfo = await client.GetApplicationInfoAsync();
+                await appInfo.Owner.SendMessageAsync($"Exception: {ex}\nException Message: {ex.Message}");
+            }
+
+            try
+            {
                 var successEmbed = new EmbedBuilder().WithDescription(Application.EmbedSuccess);
                 var embeds = new Embed[] { successEmbed.Build(), embedBuilder.Build() };
                 await modal.User.SendMessageAsync(embeds: embeds);
