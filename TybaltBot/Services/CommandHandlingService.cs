@@ -138,6 +138,12 @@ namespace TybaltBot.Services
             var guildUser = guild.Users.First(u => u.Id == button.User.Id);
             var channel = guild.Channels.First(c => c.Id == config!.Channels["inactivity"]);
 
+            // check if the user has the inactivity role
+            if (!guildUser.Roles.Any(r => r.Id == roleId))
+            {
+                return;
+            }
+            
             await guildUser.RemoveRoleAsync(roleId);
 
             if (channel.GetChannelType() == ChannelType.Text)
