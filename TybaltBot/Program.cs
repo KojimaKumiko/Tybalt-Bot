@@ -49,7 +49,7 @@ namespace TybaltBot
         {
             var config = new DiscordSocketConfig()
             {
-                LogLevel = LogSeverity.Debug,
+                LogLevel = LogSeverity.Info,
                 MessageCacheSize = 50,
                 AlwaysDownloadUsers = true,
                 DefaultRetryMode = RetryMode.AlwaysRetry,

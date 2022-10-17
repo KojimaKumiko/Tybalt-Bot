@@ -34,21 +34,21 @@ namespace TybaltBot.Services
 
             client.Ready += async () =>
             {
-                logger.Debug("Client ready");
+                logger.Information("Client ready");
 
                 await interactionService.RegisterCommandsToGuildAsync(config!.GuildId);
             };
 
             client.InteractionCreated += async (x) =>
             {
-                logger.Debug("Interaction created");
+                logger.Information($"Interaction created by User: {x.User}");
                 var ctx = new SocketInteractionContext(client, x);
                 await interactionService.ExecuteCommandAsync(ctx, services);
             };
 
             client.ButtonExecuted += async (button) =>
             {
-                logger.Debug($"Button executed: {button.Data.CustomId}");
+                logger.Information($"Button executed: {button.Data.CustomId}");
 
                 try
                 {
@@ -75,7 +75,7 @@ namespace TybaltBot.Services
 
             client.ModalSubmitted += async (modal) =>
             {
-                logger.Debug($"Modal submitted: {modal.Data.CustomId}");
+                logger.Information($"Modal submitted: {modal.Data.CustomId}");
 
                 try
                 {
@@ -170,7 +170,7 @@ namespace TybaltBot.Services
                     .WithTitle("Fehler")
                     .WithDescription(Application.AccountName_Wrong)
                     .WithCurrentTimestamp();
-                await modal.RespondAsync(embed: embed.Build(), ephemeral: true);
+                await modal.FollowupAsync(embed: embed.Build(), ephemeral: true);
                 return;
             }
 
