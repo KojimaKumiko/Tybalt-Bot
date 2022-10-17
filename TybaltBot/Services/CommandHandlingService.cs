@@ -163,7 +163,9 @@ namespace TybaltBot.Services
             string found = components.First(x => x.CustomId == "found").Value;
             string skill = components.First(x => x.CustomId == "skill").Value;
 
-            var match = Regex.IsMatch(accountName, @"[a-zA-Z]+\.\d{4}$");
+            logger.Information($"AccountName: {accountName}");
+
+            var match = Regex.IsMatch(accountName, @"^[a-zA-Z\s]+\.\d{4}$");
             if (!match)
             {
                 var embed = new EmbedBuilder()
@@ -174,7 +176,6 @@ namespace TybaltBot.Services
                 return;
             }
 
-            logger.Information($"AccountName: {accountName}");
             logger.Information($"Reason: {reason}");
             logger.Information($"Found: {found}");
             logger.Information($"Skill: {skill}");
