@@ -92,6 +92,24 @@ namespace TybaltBot.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bei dieser Bewerbung kam es zu einer Exception! Es ist möglich das die Person keine Rolle erhalten hat und es versucht wird die Bewerbung erneut abzuschicken..
+        /// </summary>
+        internal static string EmbedFail {
+            get {
+                return ResourceManager.GetString("EmbedFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hier habt ihr die Möglichkeit verschiedene Rollen hinzuzufügen bzw. diese zu entfernen..
+        /// </summary>
+        internal static string EmbedRole {
+            get {
+                return ResourceManager.GetString("EmbedRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vielen Dank für deine Bewerbung! Wir werden sie innerhalb der nächsten Tage bearbeiten und dir Rechte geben.
         ///
         ///In der Zwischenzeit kannst du dir schon einmal deinen Account bei [RaidOrga+](https://orga.rising-light.de/#/) anlegen. Bitte achte auch hier darauf, deinen Accountnamen richtig anzugeben..
@@ -121,6 +139,16 @@ namespace TybaltBot.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Es gab ein Problem beim verschicken deiner Bewerbung. Bitte versuche es später erneut.
+        ///Falls das Problem weiterhin auftreten sollte, melde dich entweder im &lt;#{0}&gt; Channel oder bei {1} direkt..
+        /// </summary>
+        internal static string ModalFail {
+            get {
+                return ResourceManager.GetString("ModalFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die Bewerbung wurde erfolgreich verschickt!.
         /// </summary>
         internal static string ModalSuccess {
@@ -130,11 +158,57 @@ namespace TybaltBot.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Du interessierst dich für andere Spiele neben Guild Wars 2 und möchtest benachrichtigt werden, wenn weitere Mitspieler gesucht werden? Dann musst du lediglich auf den unten stehenden Knopf drücken und dir wird automatisch die Rolle &lt;@&amp;1049401228452438057&gt; hinzugefügt.
+        ///Sollte dir die Benachrichtigungen zu viel werden oder das Interesse schwinden, kannst du dir die Rolle entfernen lassen, wenn du wieder auf den Knopf drückst..
+        /// </summary>
+        internal static string OtherGames {
+            get {
+                return ResourceManager.GetString("OtherGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dir wurde die Rolle erfolgreich hinzugefügt..
+        /// </summary>
+        internal static string OtherGamesAdded {
+            get {
+                return ResourceManager.GetString("OtherGamesAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dir wurde die Rolle erfolgreich entfernt..
+        /// </summary>
+        internal static string OtherGamesRemoved {
+            get {
+                return ResourceManager.GetString("OtherGamesRemoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warum möchtest du Mitglied werden?.
         /// </summary>
         internal static string Reason {
             get {
                 return ResourceManager.GetString("Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dir wurde die Rolle {0} erfolgreich hinzugefügt..
+        /// </summary>
+        internal static string RoleAdded {
+            get {
+                return ResourceManager.GetString("RoleAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dir wurde die Rolle {0} erfolgreich entfernt..
+        /// </summary>
+        internal static string RoleRemoved {
+            get {
+                return ResourceManager.GetString("RoleRemoved", resourceCulture);
             }
         }
         

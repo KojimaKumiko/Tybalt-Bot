@@ -130,6 +130,12 @@ Wir freuen uns, dass du den Weg auf unseren Server gefunden hast. Alle Infos zu 
 Wenn du Mitglied werden möchtest, bewirb dich einfach indem du auf den Bewerben-Knopf unter dieser Nachricht klickst.
 Es öffnet sich dann ein Pop-Up Fenster, welches ausgefüllt werden muss.</value>
   </data>
+  <data name="EmbedFail" xml:space="preserve">
+    <value>Bei dieser Bewerbung kam es zu einer Exception! Es ist möglich das die Person keine Rolle erhalten hat und es versucht wird die Bewerbung erneut abzuschicken.</value>
+  </data>
+  <data name="EmbedRole" xml:space="preserve">
+    <value>Hier habt ihr die Möglichkeit verschiedene Rollen hinzuzufügen bzw. diese zu entfernen.</value>
+  </data>
   <data name="EmbedSuccess" xml:space="preserve">
     <value>Vielen Dank für deine Bewerbung! Wir werden sie innerhalb der nächsten Tage bearbeiten und dir Rechte geben.
 
@@ -141,11 +147,31 @@ In der Zwischenzeit kannst du dir schon einmal deinen Account bei [RaidOrga+](ht
   <data name="ModalAcountName" xml:space="preserve">
     <value>Dein GW2-Accountname</value>
   </data>
+  <data name="ModalFail" xml:space="preserve">
+    <value>Es gab ein Problem beim verschicken deiner Bewerbung. Bitte versuche es später erneut.
+Falls das Problem weiterhin auftreten sollte, melde dich entweder im &lt;#{0}&gt; Channel oder bei {1} direkt.</value>
+  </data>
   <data name="ModalSuccess" xml:space="preserve">
     <value>Die Bewerbung wurde erfolgreich verschickt!</value>
   </data>
+  <data name="OtherGames" xml:space="preserve">
+    <value>Du interessierst dich für andere Spiele neben Guild Wars 2 und möchtest benachrichtigt werden, wenn weitere Mitspieler gesucht werden? Dann musst du lediglich auf den unten stehenden Knopf drücken und dir wird automatisch die Rolle &lt;@&amp;1049401228452438057&gt; hinzugefügt.
+Sollte dir die Benachrichtigungen zu viel werden oder das Interesse schwinden, kannst du dir die Rolle entfernen lassen, wenn du wieder auf den Knopf drückst.</value>
+  </data>
+  <data name="OtherGamesAdded" xml:space="preserve">
+    <value>Dir wurde die Rolle erfolgreich hinzugefügt.</value>
+  </data>
+  <data name="OtherGamesRemoved" xml:space="preserve">
+    <value>Dir wurde die Rolle erfolgreich entfernt.</value>
+  </data>
   <data name="Reason" xml:space="preserve">
     <value>Warum möchtest du Mitglied werden?</value>
+  </data>
+  <data name="RoleAdded" xml:space="preserve">
+    <value>Dir wurde die Rolle {0} erfolgreich hinzugefügt.</value>
+  </data>
+  <data name="RoleRemoved" xml:space="preserve">
+    <value>Dir wurde die Rolle {0} erfolgreich entfernt.</value>
   </data>
   <data name="Skill" xml:space="preserve">
     <value>Wie würdest du deine Raid-Erfahrung bewerten?</value>

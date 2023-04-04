@@ -37,6 +37,11 @@ namespace TybaltBot.Services
             return null;
         }
 
+        public ConfigService? LoadJson(string fileName, bool loadFresh = false)
+        {
+            return LoadJsonAsync(fileName, loadFresh).GetAwaiter().GetResult();
+        }
+
         public void SaveJson(string fileName)
         {
             using var sw = new StreamWriter(fileName);
