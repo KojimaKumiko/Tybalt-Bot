@@ -7,6 +7,7 @@ using TybaltBot.Resources;
 using System.Text.RegularExpressions;
 using Serilog;
 using Discord.Rest;
+using Discord.Net;
 
 namespace TybaltBot.Modules
 {
@@ -45,6 +46,7 @@ namespace TybaltBot.Modules
         [ComponentInteraction("application-button")]
         public async Task HandleApplicationButton()
         {
+            logger.Information($"The user {Context.User.Username} trigger the application-modal");
             await RespondWithModalAsync<ApplicationModal>("application-modal");
         }
 
@@ -124,7 +126,24 @@ namespace TybaltBot.Modules
 
                 var successEmbed = new EmbedBuilder().WithDescription(Application.EmbedSuccess);
                 var embeds = new Embed[] { embedBuilder.Build(), successEmbed.Build() };
-                await Context.User.SendMessageAsync(embeds: embeds);
+
+                try
+                {
+                    await Context.User.SendMessageAsync(embeds: embeds);
+                }
+                catch (HttpException ex) when (ex.DiscordCode == DiscordErrorCode.CannotSendMessageToUser)
+                {
+                    logger.Error(ex.Message);
+                    await FollowupAsync(Application.ModalSuccess, embeds: embeds, ephemeral: true);
+
+                    if (botMessage != null)
+                    {
+                        embedBuilder.WithFooter(string.Format(Application.CannotSendMessage, "⚠"));
+                        await botMessage.ModifyAsync(m => m.Embed = embedBuilder.Build());
+                    }
+
+                    return;
+                }
 
                 await FollowupAsync(Application.ModalSuccess, ephemeral: true);
             }

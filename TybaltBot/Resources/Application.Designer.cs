@@ -79,6 +79,15 @@ namespace TybaltBot.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Der Bot konnte der Person keine DM schicken. Es ist möglich, dass die DM&apos;s der Person geschlossen sind..
+        /// </summary>
+        internal static string CannotSendMessage {
+            get {
+                return ResourceManager.GetString("CannotSendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Willkommen Fremder!
         ///Wir freuen uns, dass du den Weg auf unseren Server gefunden hast. Alle Infos zu unserer Raid-Community findest du hier im Discord oder auf unserer Website [Rising Light](https://rising-light.de/).
         ///
@@ -154,6 +163,15 @@ namespace TybaltBot.Resources {
         internal static string ModalSuccess {
             get {
                 return ResourceManager.GetString("ModalSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hallo! Deine Bewerbung wurde erfolgreich verschickt, jedoch konnte der Bot dir keine DM schicken, weshalb du diese Nachricht hier siehst. Stelle doch bitte sicher, dass deine DMs offen sind, damit wir dich bei Bedarf direkt anschreiben können bezüglich deiner Bewerbung. Du kannst das überprüfen, in dem du einen Rechtsklick auf den Server machst und dann auf den Punkt `Privatsphäreeinstellungen` klickst. Die erste Option `Direktnachrichten` sollte hier aktiviert sein..
+        /// </summary>
+        internal static string ModalSuccessNoDM {
+            get {
+                return ResourceManager.GetString("ModalSuccessNoDM", resourceCulture);
             }
         }
         

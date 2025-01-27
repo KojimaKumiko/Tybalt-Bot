@@ -123,6 +123,9 @@
   <data name="AccountName_Wrong" xml:space="preserve">
     <value>Dein Guild Wars 2 Accountname ist unvollständig. Gib bitte auch die 4 Ziffern deines Account Namens an.</value>
   </data>
+  <data name="CannotSendMessage" xml:space="preserve">
+    <value>{0} Der Bot konnte der Person keine DM schicken. Es ist möglich, dass die DM's der Person geschlossen sind.</value>
+  </data>
   <data name="EmbedDescription" xml:space="preserve">
     <value>Willkommen Fremder!
 Wir freuen uns, dass du den Weg auf unseren Server gefunden hast. Alle Infos zu unserer Raid-Community findest du hier im Discord oder auf unserer Website [Rising Light](https://rising-light.de/).
@@ -153,6 +156,9 @@ Falls das Problem weiterhin auftreten sollte, melde dich entweder im &lt;#{0}&gt
   </data>
   <data name="ModalSuccess" xml:space="preserve">
     <value>Die Bewerbung wurde erfolgreich verschickt!</value>
+  </data>
+  <data name="ModalSuccessNoDM" xml:space="preserve">
+    <value>Hallo! Deine Bewerbung wurde erfolgreich verschickt, jedoch konnte der Bot dir keine DM schicken, weshalb du diese Nachricht hier siehst. Stelle doch bitte sicher, dass deine DMs offen sind, damit wir dich bei Bedarf direkt anschreiben können bezüglich deiner Bewerbung. Du kannst das überprüfen, in dem du einen Rechtsklick auf den Server machst und dann auf den Punkt `Privatsphäreeinstellungen` klickst. Die erste Option `Direktnachrichten` sollte hier aktiviert sein.</value>
   </data>
   <data name="OtherGames" xml:space="preserve">
     <value>Du interessierst dich für andere Spiele neben Guild Wars 2 und möchtest benachrichtigt werden, wenn weitere Mitspieler gesucht werden? Dann musst du lediglich auf den unten stehenden Knopf drücken und dir wird automatisch die Rolle &lt;@&amp;1049401228452438057&gt; hinzugefügt.
